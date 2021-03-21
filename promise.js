@@ -44,7 +44,7 @@ const enterNumber = () => {
 const continueGame = () => {
   return new Promise((resolve) => {
     if (window.confirm('continue?')) {
-        const userNumber = Number(window.prompt('Enter a number (1 - 6):'));
+      //const userNumber = Number(window.prompt('Enter a number (1 - 6):'));
       resolve(true);
     } else {
       resolve(false);
@@ -52,5 +52,20 @@ const continueGame = () => {
   });
 };
 
-enterNumber();
-continueGame()
+const handleGame = async () => {
+  try {
+    const result = await enterNumber();
+    alert(`Dice: ${result.randomNumber}: you got ${result.points} points`);
+
+    const count = await continueGame();
+    if (count) {
+      handleGame();
+    } else {
+      alert('game ends');
+    }
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
+handleGame();

@@ -119,3 +119,8 @@ const second = new Promise((resolve) => {
 
 Promise.all([first, second]).then(result => console.log(result));
 */
+
+
+
+//compilation = convert code so the platform understanda
+//
